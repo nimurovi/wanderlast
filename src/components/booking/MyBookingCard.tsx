@@ -78,17 +78,7 @@ export function MyBookingCard({ booking }: { booking: Booking }) {
         }
     };
 
-
-    // const handleCancelBooking = async () => {
-
-    //         const response = await fetch(`http://localhost:8000/bookings/${booking._id}`, {
-    //             method: "DELETE",
-    //         });
-    //         const result = await response.json();
-    //          console.log(result);
-    //         redirect("/my-bookings");
-
-    //     }
+ 
     return (
         <Card className="gap-0 border-zinc-200 bg-white py-0 shadow-sm ring-zinc-200">
             <CardContent className="px-0">
