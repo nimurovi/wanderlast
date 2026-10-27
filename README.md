@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wonderlust
+
+Wonderlust is a travel-focused web application built with Next.js and Node.js. It combines a modern frontend with an Express backend to support travel-related features and API services.
+
+## Tech Stack
+
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- ESLint
+
+### Backend
+- Node.js
+- Express.js
+- REST API
+
+## Project Structure
+
+```text
+wonderlust/
+├── public/                 # Static assets
+├── src/                    # Next.js application source
+├── server/                 # Express backend
+│   ├── src/                # Backend source code
+│   ├── index.js            # Server entry point
+│   ├── package.json        # Backend dependencies
+│   └── .gitignore          # Backend Git exclusions
+├── package.json            # Frontend dependencies
+├── next.config.ts          # Next.js configuration
+├── tsconfig.json           # TypeScript configuration
+├── .gitignore
+└── README.md
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Make sure you have installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js
+- npm
+- Git
+ 
+ 
+ 
+### Frontend — Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Import the GitHub repository into Vercel.
+2. Set the project root to the repository root.
+3. Configure the required frontend environment variables.
+4. Deploy the application.
+ 
+## Security
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Never commit `.env` or `.env.local` files containing secrets.
+- Keep database credentials and private API keys in environment variables.
+- Do not commit `node_modules/` or generated build files.
+- Validate incoming API requests on the server.
+- Configure CORS to allow only trusted frontend origins where appropriate.
 
-## Learn More
+## Development Workflow
 
-To learn more about Next.js, take a look at the following resources:
+1. Create a feature branch when working on a new feature.
+2. Implement and test the changes locally.
+3. Commit the changes with a descriptive message.
+4. Push the branch to GitHub.
+5. Merge changes into the production branch after testing.
+6. Verify the frontend and backend deployments.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contributions and suggestions are welcome. Please test changes before submitting a pull request.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Add your chosen license here if you intend to distribute this project under an open-source license.
