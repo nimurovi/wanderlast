@@ -5,15 +5,20 @@ import { headers } from "next/headers";
 
 import { Button } from "@/components/ui/button";
 import { MyBookingCard, type Booking } from "@/components/booking/MyBookingCard";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const MyBookingPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers(), // you need to pass the headers object.
     });
     const user = session?.user;
-
+    const token= await getTokenFromServer()
     const bookings: Booking[] = user?.email
-        ? await fetch(`http://localhost:8000/my-bookings/${user.email}`).then((res) =>
+        ? await fetch(`http://localhost:8000/my-bookings/${user.email}`,{
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }   
+        }).then((res) =>
               res.json()
           )
         : [];

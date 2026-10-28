@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Destination } from "./destination-card";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const categories = [
     "Beach",
@@ -66,16 +67,18 @@ const EditDestinationDialog = ({ destination }: { destination: Destination }) =>
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
+        const data = await getTokenFromClient()
         const { _id, ...restDestination } = form
         const res = await fetch(`http://localhost:8000/destinations/${destination._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${data}`
             },
             body: JSON.stringify(restDestination),
         })
-        const data = await res.json()
-        console.log(data)
+        const result = await res.json()
+        console.log(result)
     }
 
     function handleCancel() {

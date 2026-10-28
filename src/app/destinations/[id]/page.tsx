@@ -1,24 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 import {
     ArrowLeftIcon,
-     
+
     CalendarDaysIcon,
     CheckIcon,
     MapPinIcon,
-     
+
     StarIcon,
-  
+
 } from "lucide-react";
- 
- 
+
+
 
 import EditDestinationDialog from "@/components/EditDestinationDialog";
 import DeleteDestinationDialog from "@/components/DeleteDestinationDialog";
 import BookingCard from "@/components/booking/BookingCard";
- 
- 
+
+
+
 const highlights = [
     "Luxury beachfront accommodation",
     "Visit Uluwatu Temple at sunset",
@@ -28,11 +29,19 @@ const highlights = [
 ];
 
 
- 
+
 
 const destinationDetailsPage = async (props: PageProps<"/destinations/[id]">) => {
     const { id } = await props.params;
-    const res = await fetch(`http://localhost:8000/destinations/${id}`);
+
+    const jwtToken = await getTokenFromServer();
+    console.log("jwtToken", jwtToken?.token)
+
+    const res = await fetch(`http://localhost:8000/destinations/${id}`, {
+        headers: {
+            authorization:  `Bearer ${jwtToken?.token}` // Include the JWT token in the Authorization header
+        }
+    });
     const Destination = await res.json();
 
     return (
@@ -49,7 +58,7 @@ const destinationDetailsPage = async (props: PageProps<"/destinations/[id]">) =>
 
                     <div className="flex gap-3">
 
-                        <EditDestinationDialog  destination={Destination}></EditDestinationDialog>
+                        <EditDestinationDialog destination={Destination}></EditDestinationDialog>
                         <DeleteDestinationDialog destination={Destination}></DeleteDestinationDialog>
                     </div>
                 </div>
@@ -117,7 +126,7 @@ const destinationDetailsPage = async (props: PageProps<"/destinations/[id]">) =>
                         </ul>
                     </div>
 
-                    <BookingCard Destination={Destination}></BookingCard> 
+                    <BookingCard Destination={Destination}></BookingCard>
                 </div>
             </div>
         </div>

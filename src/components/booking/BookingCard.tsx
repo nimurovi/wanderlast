@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { date } from "better-auth";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const perks = [
     "Free cancellation up to 7 days",
@@ -40,10 +41,13 @@ export default function BookingCard({ Destination }: { Destination: Destination 
         }
         console.log(data)
 
+         const token = await getTokenFromClient();
+
         const res= await fetch('http://localhost:8000/bookings', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })

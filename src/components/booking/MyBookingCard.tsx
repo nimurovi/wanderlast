@@ -17,17 +17,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
     AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
+    
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 export type Booking = {
     _id: string;
     destinationName: string;
@@ -57,11 +52,15 @@ export function MyBookingCard({ booking }: { booking: Booking }) {
     const isConfirmed = status.toLowerCase() === "confirmed";
     const router = useRouter();
     const handleCancelBooking = async () => {
+        const token= await getTokenFromClient()
         try {
             const response = await fetch(
                 `http://localhost:8000/my-bookings/${booking._id}`,
                 {
                     method: "DELETE",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
                 }
             );
             const result = await response.json();
