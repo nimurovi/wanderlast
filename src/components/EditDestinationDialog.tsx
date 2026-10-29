@@ -69,7 +69,7 @@ const EditDestinationDialog = ({ destination }: { destination: Destination }) =>
         event.preventDefault()
         const data = await getTokenFromClient()
         const { _id, ...restDestination } = form
-        const res = await fetch(`http://localhost:8000/destinations/${destination._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destinations/${destination._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

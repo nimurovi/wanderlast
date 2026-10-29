@@ -37,7 +37,7 @@ const destinationDetailsPage = async (props: PageProps<"/destinations/[id]">) =>
     const jwtToken = await getTokenFromServer();
     console.log("jwtToken", jwtToken?.token)
 
-    const res = await fetch(`http://localhost:8000/destinations/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destinations/${id}`, {
         headers: {
             authorization:  `Bearer ${jwtToken?.token}` // Include the JWT token in the Authorization header
         }

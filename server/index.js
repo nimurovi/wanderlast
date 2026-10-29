@@ -41,7 +41,7 @@ const varifyApi = async (req, res, next) => {
     return res.status(401).json({ message: 'Token missing' });
   }
   const JWKS = createRemoteJWKSet(
-    new URL("http://localhost:3000/api/auth/jwks")
+    new URL(`${process.env.CLIENT_URI}/api/auth/jwks`)
   );
   try {
     const { payload } = await jwtVerify(token, JWKS);
@@ -116,3 +116,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+export default app;

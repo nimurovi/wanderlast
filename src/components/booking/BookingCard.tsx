@@ -43,7 +43,7 @@ export default function BookingCard({ Destination }: { Destination: Destination 
 
          const token = await getTokenFromClient();
 
-        const res= await fetch('http://localhost:8000/bookings', {
+        const res= await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

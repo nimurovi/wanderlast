@@ -14,7 +14,7 @@ const MyBookingPage = async () => {
     const user = session?.user;
     const token= await getTokenFromServer()
     const bookings: Booking[] = user?.email
-        ? await fetch(`http://localhost:8000/my-bookings/${user.email}`,{
+        ? await fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-bookings/${user.email}`,{
             headers: {
                 "Authorization": `Bearer ${token}`
             }   
